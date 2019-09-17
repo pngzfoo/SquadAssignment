@@ -10,14 +10,14 @@ import com.example.testfragment.R
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : Fragment() {
+class MobileListFragment : Fragment() {
 
 
     //companion object ทำการประกาศ object declaration ใน class ด้วย keyword ชื่อว่า companion
 //โดยที่ class หลักสามารถเรียกใช้ method ใน object ได้โดยตรง
     companion object {
         // ส่งหน้าตัวเอง
-        fun newInstance(): PlaceholderFragment = PlaceholderFragment()
+        fun newInstance(): MobileListFragment = MobileListFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
