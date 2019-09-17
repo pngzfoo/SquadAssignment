@@ -1,35 +1,29 @@
 package com.example.testfragment.adapter
 
 import com.example.testfragment.mobile_interface.MobilePresenterInterface
+import com.example.testfragment.model.MobileModel
 import com.example.testfragment.service.ApiService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class MobilePresenter (val view: MobilePresenterInterface, private val service: ApiService){
+class MobilePresenter(val view: MobilePresenterInterface, private val service: ApiService) {
 
-    fun getMobileApi(){
-        service.getMobileList()
+
+    fun getBeerApi() {
+        service.getMobileList().enqueue(object : Callback<List<MobileModel>> {
+            override fun onFailure(call: Call<List<MobileModel>>, t: Throwable) { }
+
+            override fun onResponse(call: Call<List<MobileModel>>, response: Response<List<MobileModel>>) {
+                response.body()?.apply {
+                    if (this.isNotEmpty()) {
+                        view.setMobile(this)
+                    }
+                }
+            }
+
+        })
     }
 
-}
 
-//class BeerListPresenter(val view: BeerApiPresenterInterface, private val service: BeerApiService) {
-//
-//    companion object {
-//        const val PAGE: Int = 1
-//        const val PER_PAGE: Int = 25
-//    }
-//
-//    fun getBeerApi() {
-//        service.getBeerList(PAGE, PER_PAGE).enqueue(object : Callback<List<BeerModel>> {
-//            override fun onFailure(call: Call<List<BeerModel>>, t: Throwable) { }
-//
-//            override fun onResponse(call: Call<List<BeerModel>>, response: Response<List<BeerModel>>) {
-//                response.body()?.apply {
-//                    if (this.isNotEmpty()) {
-//                        view.setBeer(this)
-//                    }
-//                }
-//            }
-//
-//        })
-//    }
-//
+}
