@@ -1,6 +1,5 @@
-package com.example.testfragment.ui.main
+package com.example.testfragment.fragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,8 @@ class FavoriteListFragment : Fragment() {
 //โดยที่ class หลักสามารถเรียกใช้ method ใน object ได้โดยตรง
     companion object {
         // ส่งหน้าตัวเอง
-        fun newInstance(): MobileListFragment = MobileListFragment()
+        fun newInstance(): MobileListFragment =
+            MobileListFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
