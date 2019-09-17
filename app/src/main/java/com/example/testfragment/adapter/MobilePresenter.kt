@@ -1,4 +1,4 @@
-package com.example.testfragment.presenter
+package com.example.testfragment.adapter
 
 import com.example.testfragment.mobile_interface.MobilePresenterInterface
 import com.example.testfragment.service.ApiService
