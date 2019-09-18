@@ -15,6 +15,9 @@ class MobileListHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
     private val mobilePic: ImageView = itemView.findViewById(R.id.mobilePic)
     private val mobileName: TextView = itemView.findViewById(R.id.mobileName)
+    private val mobileDescription: TextView = itemView.findViewById(R.id.mobileDescription)
+    private val mobilePrice: TextView = itemView.findViewById(R.id.mobilePrice)
+    private val mobileRating: TextView = itemView.findViewById(R.id.mobileRating)
 
     //fun bind(model: MobileModel, listener: BeerItemClickListener) {
     fun bind(model: MobileModel) {
@@ -28,6 +31,11 @@ class MobileListHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             //.placeholder(R.mipmap.ic_launcher)
             .into(mobilePic)
         mobileName.text = model.name
+        mobileDescription.text = model.description
+        mobilePrice.text = "Price: $${model.price}"
+        mobileRating.text = "Rating: ${model.rating.toString()}"
+
+
     }
 
 }
