@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:theme="@style/AppTheme.AppBarOverlay"
-            android:background="@color/blue">
+            android:background="@color/design_default_color_primary_dark">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -33,17 +33,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@android:drawable/ic_menu_sort_by_size"
-                    android:id="@+id/menuImageButton"
+                    android:id="@+id/sortImageButton"
                     android:layout_gravity="right"
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-                    android:background="@color/blue"/>
+                    android:background="@color/design_default_color_primary_dark"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         l
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue" app:tabIndicatorColor="#000066"/>
+                android:background="@color/design_default_color_primary_dark" app:tabIndicatorColor="#000066"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
