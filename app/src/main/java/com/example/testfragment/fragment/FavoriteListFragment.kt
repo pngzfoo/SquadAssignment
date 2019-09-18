@@ -13,8 +13,8 @@ class FavoriteListFragment : Fragment() {
 //โดยที่ class หลักสามารถเรียกใช้ method ใน object ได้โดยตรง
     companion object {
         // ส่งหน้าตัวเอง
-        fun newInstance(): MobileListFragment =
-            MobileListFragment()
+        fun newInstance(): FavoriteListFragment =
+            FavoriteListFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
