@@ -39,6 +39,15 @@ class MobileDetailActivity : AppCompatActivity(), MobileDetailInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mobile_detail)
         presenter.checkMobile(intent.getParcelableExtra(EXTRA_KEY_MODEL))
+
+        val actionbar = supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     override fun setMobile(
