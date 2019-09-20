@@ -1,8 +1,12 @@
 package com.example.testfragment.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MobileModel(
+
     @SerializedName("brand")
     val brand: String,
 
@@ -22,6 +26,9 @@ data class MobileModel(
     val price: String,
 
     @SerializedName("name")
-    val name: String
+    val name: String,
 
-)
+
+    var check: Boolean =  false
+
+) : Parcelable

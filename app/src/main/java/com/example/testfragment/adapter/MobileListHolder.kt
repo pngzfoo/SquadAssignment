@@ -1,41 +1,71 @@
 package com.example.testfragment.adapter
 
+
+//import com.example.testfragment.sharedPreference
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testfragment.MainActivity
 import com.example.testfragment.R
+import com.example.testfragment.mobile_interface.MobileItemClickListener
 import com.example.testfragment.model.MobileModel
+import com.example.testfragment.sharedPreference
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.heartImageButton
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobileDescription
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobileName
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobilePic
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobilePrice
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobileRating
 
-class MobileListHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+class MobileListHolder(parent: ViewGroup, var mobilePref: sharedPreference?) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.mobile_list_card_holder, parent, false)
 ) {
 
-    private val mobilePic: ImageView = itemView.findViewById(R.id.mobilePic)
-    private val mobileName: TextView = itemView.findViewById(R.id.mobileName)
-    private val mobileDescription: TextView = itemView.findViewById(R.id.mobileDescription)
-    private val mobilePrice: TextView = itemView.findViewById(R.id.mobilePrice)
-    private val mobileRating: TextView = itemView.findViewById(R.id.mobileRating)
 
-    //fun bind(model: MobileModel, listener: BeerItemClickListener) {
-    fun bind(model: MobileModel) {
+    fun bind(model: MobileModel, listener: MobileItemClickListener) {
+//    fun bind(model: MobileModel) {
 
-//        itemView.setOnClickListener {
-//            listener.onItemClick(model)
-//        }
+
+        itemView.setOnClickListener {
+            listener.onItemClick(model)
+        }
 
         Picasso.get()
             .load(model.thumbImageURL)
             //.placeholder(R.mipmap.ic_launcher)
-            .into(mobilePic)
-        mobileName.text = model.name
-        mobileDescription.text = model.description
-        mobilePrice.text = "Price: $${model.price}"
-        mobileRating.text = "Rating: ${model.rating.toString()}"
+            .into(itemView.mobilePic)
+        itemView.mobileName.text = model.name
+        itemView.mobileDescription.text = model.description
+        itemView.mobilePrice.text = "Price: $${model.price}"
+        itemView.mobileRating.text = "Rating: ${model.rating.toString()}"
+
+
+//        fun <T> mutableSetOf(): MutableSet<T>
+//        val ms = setOf(model.name,model.price,model.brand,model.description,model.rating)
+//        var modelPref : sharedPreference? = context?.let {sharedPreference(it)}
+
+
+        itemView.heartImageButton.setOnClickListener {
+            if (model.check == true) {
+                itemView.heartImageButton.setBackgroundResource(R.drawable.cute_heart_button)
+                model.check = false
+                mobilePref?.putStr(model.id,"${model.check}")
+//                println(mobilePref?.getstr("${model.id}",MobileModel::class.java))
+
+            } else if (model.check == false) {
+                itemView.heartImageButton.setBackgroundResource(R.drawable.cute_fill_heart_button)
+                model.check = true
+                mobilePref?.putStr(model.id,"${model.check}")
+
+//                mobilePref?.deleteStr("1")
+//                var user_id = sharedPref.sharedPreference.getInt("userId", -1);
+            }
+        }
 
 
     }
 
 }
+

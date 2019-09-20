@@ -9,9 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testfragment.R
 import com.example.testfragment.adapter.MobileAdapter
 import com.example.testfragment.adapter.MobilePresenter
+import com.example.testfragment.mobile_interface.MobileItemClickListener
 import com.example.testfragment.mobile_interface.MobilePresenterInterface
 import com.example.testfragment.model.MobileModel
+import com.example.testfragment.myCustomApplication
 import com.example.testfragment.service.MobileManager
+import com.example.testfragment.sharedPreference
+import com.example.testfragment.ui.main.main.mobile_detail.MobileDetailActivity
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
@@ -42,19 +46,7 @@ class MobileListFragment : Fragment(), MobilePresenterInterface {
         fun newInstance(): MobileListFragment = MobileListFragment()
     }
 
-    private val presenter = MobilePresenter(this, MobileManager().createService())
-
-    override fun setMobile(mobileModelList: List<MobileModel>) {
-
-//        val listener = object : BeerItemClickListener {
-//            override fun onItemClick(beerModel: BeerModel) {
-//                BeerDetailActivity.startActivity(context, beerModel)
-//            }
-//        }
-        val sectionPagerAdapter = MobileAdapter(mobileModelList)//ส่งlistener
-        rvMobileList.adapter = sectionPagerAdapter
-        rvMobileList.layoutManager = LinearLayoutManager(context)
-    }
+    private val presenter = MobilePresenter(this, MobileManager.getService())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,5 +60,24 @@ class MobileListFragment : Fragment(), MobilePresenterInterface {
         super.onViewCreated(view, savedInstanceState)
         presenter.getMobileApi()
     }
+
+    override fun setMobile(mobileModelList: List<MobileModel>) {
+
+        val listener = object : MobileItemClickListener {
+            override fun onItemClick(mobileModel: MobileModel) {
+               MobileDetailActivity.startActivity(context, mobileModel)
+            }
+        }
+        var mobilePref:sharedPreference? = context?.let { sharedPreference(it) }
+        val sectionPagerAdapter = MobileAdapter(mobileModelList, listener,mobilePref)//ส่งlistener
+        rvMobileList.adapter = sectionPagerAdapter
+        rvMobileList.layoutManager = LinearLayoutManager(context)
+
+
+
+    }
+
+
+
 
 }
