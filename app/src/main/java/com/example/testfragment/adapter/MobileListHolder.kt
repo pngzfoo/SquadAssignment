@@ -2,22 +2,16 @@ package com.example.testfragment.adapter
 
 
 //import com.example.testfragment.sharedPreference
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testfragment.MainActivity
 import com.example.testfragment.R
 import com.example.testfragment.mobile_interface.MobileItemClickListener
 import com.example.testfragment.model.MobileModel
 import com.example.testfragment.sharedPreference
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.mobile_list_card_holder.view.heartImageButton
-import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobileDescription
-import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobileName
-import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobilePic
-import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobilePrice
-import kotlinx.android.synthetic.main.mobile_list_card_holder.view.mobileRating
+import kotlinx.android.synthetic.main.mobile_favorite_card_holder.view.*
+import kotlinx.android.synthetic.main.mobile_list_card_holder.view.*
 
 class MobileListHolder(parent: ViewGroup, var mobilePref: sharedPreference?) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.mobile_list_card_holder, parent, false)
@@ -36,7 +30,6 @@ class MobileListHolder(parent: ViewGroup, var mobilePref: sharedPreference?) : R
             .load(model.thumbImageURL)
             //.placeholder(R.mipmap.ic_launcher)
             .into(itemView.mobilePic)
-        itemView.mobileName.text = model.name
         itemView.mobileDescription.text = model.description
         itemView.mobilePrice.text = "Price: $${model.price}"
         itemView.mobileRating.text = "Rating: ${model.rating.toString()}"
